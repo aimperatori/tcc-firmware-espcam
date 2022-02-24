@@ -140,6 +140,17 @@ void setup() {
     Serial.printf("Camera init failed with error 0x%x", err);
     return;
   }
+
+  // Set your Static IP address
+  IPAddress local_IP(10, 0, 0, 166);
+  // Set your Gateway IP address
+  IPAddress gateway(10, 0, 0, 1);
+  
+  IPAddress subnet(255, 255, 255, 0);
+
+  if (!WiFi.config(local_IP, gateway, subnet)) {
+    Serial.println("STA Failed to configure");
+  }
   
   // Wi-Fi connection
   WiFi.begin(SSID, PASSWORD);
